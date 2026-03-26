@@ -1,0 +1,15 @@
+{
+  "name": "weather-cli",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "AndriiBVW",
+  "main": "weather.js",
+  "bin": {
+    "weather": "./weather.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
