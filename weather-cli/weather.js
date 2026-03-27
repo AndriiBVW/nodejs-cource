@@ -18,6 +18,21 @@ const saveToken = async (token) => {
   }
 };
 
+const getForecast = async () => {
+  try {
+    const weather = await getWeather("Kyiv");
+    console.log(weather);
+  } catch (error) {
+    if (error?.response?.status === 404) {
+      printError("City not found");
+    } else if (error?.response?.status === 401) {
+      printError("Invalid token");
+    } else {
+      printError(error.message);
+    }
+  }
+};
+
 const initCLI = () => {
   const args = getArgs(process.argv);
 
@@ -33,9 +48,7 @@ const initCLI = () => {
     return saveToken(args.t);
   }
 
-  getWeather("Kyiv");
-
-  // Show weather
+  getForecast();
 };
 
 initCLI();
