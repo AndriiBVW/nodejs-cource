@@ -18,6 +18,20 @@ const saveToken = async (token) => {
   }
 };
 
+const saveCity = async (city) => {
+  if (!city.length) {
+    printError("City not provided");
+    return;
+  }
+
+  try {
+    await saveKeyValue(TOKEN_DICTIONARY.city, city);
+    printSuccess("City saved");
+  } catch (error) {
+    printError(error.message);
+  }
+};
+
 const getForecast = async () => {
   try {
     const weather = await getWeather("Kyiv");
@@ -41,7 +55,7 @@ const initCLI = () => {
   }
 
   if (args.s) {
-    saveKeyValue(TOKEN_DICTIONARY.city, args.s);
+    return saveCity(args.s);
   }
 
   if (args.t) {
