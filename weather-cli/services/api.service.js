@@ -1,6 +1,26 @@
-import https from "https";
-import { getKeyValue, TOKEN_DICTIONARY } from "./storage.service.js";
 import axios from "axios";
+import { getKeyValue, TOKEN_DICTIONARY } from "./storage.service.js";
+
+const getIcon = (icon) => {
+  switch (icon.slice(0, -1)) {
+    case "01":
+      return "☀️";
+    case "02":
+      return "⛅";
+    case "03":
+    case "04":
+      return "☁️";
+    case "09":
+    case "10":
+      return "🌧️";
+    case "11":
+      return "⛈️";
+    case "13":
+      return "❄️";
+    case "50":
+      return "🌫️";
+  }
+};
 
 const getWeather = async (city) => {
   const token =
@@ -25,4 +45,4 @@ const getWeather = async (city) => {
   return data;
 };
 
-export { getWeather };
+export { getWeather, getIcon };
